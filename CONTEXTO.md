@@ -29,7 +29,7 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - 3.280 sorteos (n° 0–3287, 1990-09-19 a 2026-10-02); 2.481 de la era 14 de 25 (desde el 799).
 - Fuentes GitHub: FernandoLizana/kino-lab (1990–2024), Nicovh (2362–3264), gaaguile vía cmiloarevalo-hash/Estadis (0–3267), Fernando8955/kino `kino-polla.json` (recientes). 3.263 sorteos confirmados por ≥2 fuentes, 0 conflictos.
 - Faltan 8: 3268–3275. Descartado `resultados.json` de Fernando8955 (sorteo diario, no coincide con el Kino).
-- Loto: solo `data/loto_*.csv` de Nicovh (sorteos 4239–5463, ~1.222 de ~5.400). Historial completo no disponible en fuentes accesibles.
+- Loto (`python3 consolidar_loto.py` → `data/loto_historico.csv`): 2.409 sorteos (3077–5485, 2011-05-08 a 2026-10-01), 0 faltantes, 0 conflictos. Fuentes: Kaggle + Nicovh + chileresultados. Antes de 2011 no hay fuente accesible (polla.cl tiene antibot Incapsula).
 - Sitios oficiales y kinohistorico.cl/chileresultados.com/kaggle bloqueados por la red del entorno.
 
 ## Resultados
@@ -50,7 +50,11 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Hay varios sets de bolitas (A, B, C...) sellados; el notario elige uno al azar antes de cada sorteo y pesa las 25 bolitas.
 - Implicancia: un sesgo de un set se diluye al mezclar sorteos de todos los sets. Para probarlo se necesitaría saber qué set se usó en cada sorteo (actas notariales); sin ese dato no es analizable.
 
+## Backtest Kino (`python3 backtest_kino.py`, 2.389 sorteos)
+- Azar 7,83 · calientes 7,86–7,92 · fríos 7,79–7,85 · repetir último 7,88 aciertos (esperado 7,84). Ninguno predice.
+- El usuario solo quiere predicción/ganar dinero. Respuesta: no hay método que prediga; única palanca es valor esperado (pozos acumulados, no compartir premio).
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)
-- [ ] Loto
+- [x] Loto consolidado
