@@ -54,6 +54,11 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Azar 7,83 · calientes 7,86–7,92 · fríos 7,79–7,85 · repetir último 7,88 aciertos (esperado 7,84). Ninguno predice.
 - El usuario solo quiere predicción/ganar dinero. Respuesta: no hay método que prediga; única palanca es valor esperado (pozos acumulados, no compartir premio).
 
+## Modelo IA Kino (`python3 modelo_ia_kino.py`; requiere numpy y scikit-learn)
+- Logística, gradient boosting y red neuronal; entrenamiento con 1.602 sorteos, prueba con los 687 más recientes.
+- AUC 0,502–0,507 y log-loss igual o peor que el azar (0,6859). Aciertos 7,85–7,93 vs 7,84 esperado (error estándar ≈0,05; con 3 modelos probados no es significativo). La IA no predice.
+- Próximo interés del usuario: predicción deportiva (fútbol).
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)
