@@ -3,6 +3,7 @@
 Fuentes (data/raw y data/):
 - kinolab_historico.csv  (github.com/FernandoLizana/kino-lab): fecha + números, 1990–2024, sin n° de sorteo.
 - kino_principal.csv     (github.com/Nicovh-Analytics/analisis-loteria-chile): n° de sorteo + números, 2362–3264.
+- gaaguile_kino_history.json (vía github.com/cmiloarevalo-hash/Estadis): n° + fecha + números.
 - fernando8955_kino_polla.json (github.com/Fernando8955/kino): n° + fecha + números, sorteos recientes.
 El n° de sorteo de kino-lab se asigna alineando sus combinaciones con las de Nicovh.
 """
@@ -48,6 +49,19 @@ for s, nums in nicovh.items():
             sorteos[s]["fuente"] += "+nicovh"
     else:
         sorteos[s] = {"fecha": "", "nums": nums, "fuente": "nicovh"}
+with open("data/raw/gaaguile_kino_history.json") as f:
+    gaaguile = {d["drawNumber"]: (datetime.strptime(d["date"], "%A, %b %d, %Y").date().isoformat(),
+                                  tuple(sorted(d["numbers"]))) for d in json.load(f)}
+for s, (fecha, nums) in gaaguile.items():
+    if s in sorteos:
+        if sorteos[s]["nums"] != nums:
+            conflictos.append(s)
+        else:
+            sorteos[s]["fuente"] += "+gaaguile"
+            sorteos[s]["fecha"] = sorteos[s]["fecha"] or fecha
+    else:
+        sorteos[s] = {"fecha": fecha, "nums": nums, "fuente": "gaaguile"}
+
 for s, (fecha, nums) in recientes.items():
     if s in sorteos and sorteos[s]["nums"] != nums:
         conflictos.append(s)
