@@ -1,7 +1,7 @@
 """Análisis de aleatoriedad del Kino (14 de 25) y generador de combinaciones.
 
 Uso: python3 analisis_kino.py [cantidad_de_combinaciones]
-Datos: data/kino_principal.csv (fuente: github.com/Nicovh-Analytics/analisis-loteria-chile, MIT).
+Datos: data/kino_historico.csv (generado por consolidar_kino.py). Solo era 14 de 25 (sorteo 799 en adelante).
 """
 import csv
 import random
@@ -10,7 +10,7 @@ import sys
 from collections import Counter
 
 N, K = 25, 14
-ARCHIVO = "data/kino_principal.csv"
+ARCHIVO = "data/kino_historico.csv"
 SIMULACIONES = 2000
 
 
@@ -18,7 +18,9 @@ def cargar():
     sorteos = {}
     with open(ARCHIVO) as f:
         for fila in csv.DictReader(f):
-            nums = sorted(int(fila[f"n{i}"]) for i in range(1, K + 1))
+            if fila["cantidad"] != str(K):
+                continue
+            nums = sorted(int(x) for x in fila["numeros"].split())
             if len(set(nums)) == K and all(1 <= x <= N for x in nums):
                 sorteos[int(fila["sorteo"])] = nums
     return sorteos

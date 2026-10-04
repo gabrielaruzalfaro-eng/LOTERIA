@@ -25,7 +25,15 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - `data/kino_principal.csv`: 889 sorteos Kino (2362–3264), faltan 14. Fuente: github.com/Nicovh-Analytics/analisis-loteria-chile (MIT, scraping de chileresultados.com). Ese repo también tiene Loto (~1.222 sorteos, 4 bombos).
 - polla.cl y loteria.cl están bloqueados por la red del entorno.
 
+## Base consolidada Kino (`python3 consolidar_kino.py` → `data/kino_historico.csv`)
+- 3.275 sorteos (n° 0–3287, 1990-09-19 a 2026-10-02); 2.476 de la era 14 de 25 (desde el 799).
+- Fuentes GitHub: FernandoLizana/kino-lab (1990–2024, con fechas), Nicovh (2362–3264), Fernando8955/kino (recientes). 576 sorteos cruzados sin conflictos.
+- Faltan 13: 2981, 3155, 3265–3275.
+- Loto: solo `data/loto_*.csv` de Nicovh (sorteos 4239–5463, ~1.222 de ~5.400). Historial completo no disponible en fuentes accesibles.
+- Sitios oficiales y kinohistorico.cl/chileresultados.com/kaggle bloqueados por la red del entorno.
+
 ## Resultados
+- Kino 2.476 sorteos: p=0,172 → sin sesgo. 10 el más frecuente (+72), 14 el menos (−36).
 - Kino: prueba de uniformidad Monte Carlo p=0.418 → sin sesgo. Más frecuente: 10 (+28); menos: 14 (−26), dentro del azar.
 - Script: `python3 analisis_kino.py [n]` → frecuencias, prueba y n combinaciones al azar.
 
@@ -40,5 +48,5 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 
 ## Estado
 - [x] Datos Kino + análisis
-- [ ] Completar sorteos faltantes (el usuario tiene datos en otra conversación)
+- [x] Base Kino consolidada (faltan 13 sorteos)
 - [ ] Loto
