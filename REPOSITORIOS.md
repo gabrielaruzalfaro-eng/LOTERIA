@@ -52,3 +52,18 @@ Nunca poner una clave privada con fondos en código de terceros sin auditarlo.
 
 Pregunta clave del copy trading: ¿los traders que ganaron en el pasado siguen ganando después? (persistencia de
 habilidad). Además, al copiar entras después y a peor precio que el trader original.
+
+## Revisión a fondo (resultados reportados por cada repo; no verificados por nosotros)
+| Estrategia | Resultado neto, fuera de muestra | Credibilidad |
+|---|---|---|
+| Fútbol: apostar cuando una casa blanda paga >2% sobre Pinnacle sin margen ([ryan00x/Bet-Model](https://github.com/ryan00x/Bet-Model)) | +4,86% ROI, 20.676 apuestas, CLV +3%, positivo las 13 temporadas | La mejor, pero cae a +1,75% en 2022–24 y las casas limitan a quien gana |
+| Polymarket: comprar Sí en cripto a 97–99¢ ([zee229](https://github.com/zee229/polymarket-research-kit)) | +0,65% con precios reales de ejecución | Alta pero diminuta; no pasa corrección por pruebas múltiples |
+| Polymarket: comprar No si el Sí cuesta 1–10%, 30 días antes ([wcsmars](https://github.com/wcsmars/Polymarket-Calibration-and-Favorite-Longshot-Bias)) | +0,93% (t=3,0); a 7 días +0,11% | Media: costo fijo de 1¢, sin ejecución real |
+| Kalshi: market making pasivo (Darson2004/prediction-market-microstructure) | +0,9¢ por contrato | Media: solo simulación, no replicó al mes siguiente |
+| Arbitraje Polymarket–Kalshi (Darson2004) | −1,39¢ por contrato; ventanas de ~48 ms | No funciona para personas |
+| Copiar modelos ML/LightGBM | Peor que el precio de mercado | — |
+
+- zee229: de 200 estrategias candidatas, 25 "ganan" usando precio medio, solo 1 con precios reales de ejecución.
+- Akey et al. (588 M de operaciones en Polymarket): el 1% de las cuentas se lleva el 76,5% de las ganancias; ganan sobre todo los que ponen órdenes límite (proveen liquidez), no los que apuestan.
+- Bürgi, Deng y Whelan (Kalshi): contratos <10¢ pierden >60%; los >50¢ tienen retorno levemente positivo.
+- Dataset de Jon-Becker: `https://s3.jbecker.dev/data.tar.zst` (33,5 GB comprimido, Parquet con operaciones de Polymarket y Kalshi).
