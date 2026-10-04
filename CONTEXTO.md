@@ -77,7 +77,10 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Con muestra parcial (2.600 mercados) el top 10 daba +4,6% a +9,6%: el resultado cambia de signo con más datos → evidencia de azar.
 - Limitaciones: ≤10.500 operaciones por mercado (las más recientes), copiar al precio observado + recargo, no considera que copiar mueve el precio.
 
-## Polymarket estrategias (parcial, 54 mil mercados de mayor volumen)
+## Polymarket estrategias — FINAL (165.844 historiales bajados de 192.839 con vol ≥$50k; 73.916 utilizables; salida en `mercados/resultados_polymarket.txt`)
+- La descarga se detuvo por el límite de tiempo del proceso (no se relanzó). Con 1¢: No en Sí 1–10% −2,0% (7 d) / −0,4% (30 d); reversión −26,8%; favorito 95–99% −1,6% (1 d) / −1,1% (7 d). Con 2¢ todo peor. Ninguna estrategia gana.
+
+### Resultados parciales previos (54 mil mercados)
 - Idea 1 (No en Sí 1–10%): −2,5% (7 días), −0,7% (30 días) con 1¢. Idea 2 (reversión): −15% a −32%. Idea 3 (favorito 95–99%): −1,4% a −1,9%. Todas pierden.
 - ANOMALÍA en revisión: Sí a 10–40% sale ~5–6 pts más de lo que indica el precio ("comprar Sí" daría +20%). Crece con el volumen FINAL (+4% en $0,1–0,2M → +14% en >$10M a 7 días) → probable sesgo de selección (mercados donde gana el batacazo atraen volumen después). wcsmars (≥$1k, 26k mercados) no lo encontró. Control: muestra al azar de 15 mil mercados de $10–50k (`mercados/muestra_bajo_volumen.py`; 5.816 con historial). Resultado a 7 días en el control: Sí 10–20% +3,2 pts, 20–30% −0,6, 30–40% −7,7 (promedio ≈ −2 pts) → la anomalía desaparece en mercados chicos: confirma sesgo de selección por volumen final. A 30 días el Sí incluso está sobrevalorado.
 
