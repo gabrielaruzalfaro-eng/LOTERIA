@@ -79,7 +79,7 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 
 ## Polymarket estrategias (parcial, 54 mil mercados de mayor volumen)
 - Idea 1 (No en Sí 1–10%): −2,5% (7 días), −0,7% (30 días) con 1¢. Idea 2 (reversión): −15% a −32%. Idea 3 (favorito 95–99%): −1,4% a −1,9%. Todas pierden.
-- ANOMALÍA en revisión: Sí a 10–40% sale ~5–6 pts más de lo que indica el precio ("comprar Sí" daría +20%). Crece con el volumen FINAL (+4% en $0,1–0,2M → +14% en >$10M a 7 días) → probable sesgo de selección (mercados donde gana el batacazo atraen volumen después). wcsmars (≥$1k, 26k mercados) no lo encontró. Control: muestra al azar de 15 mil mercados de $10–50k (`mercados/muestra_bajo_volumen.py`).
+- ANOMALÍA en revisión: Sí a 10–40% sale ~5–6 pts más de lo que indica el precio ("comprar Sí" daría +20%). Crece con el volumen FINAL (+4% en $0,1–0,2M → +14% en >$10M a 7 días) → probable sesgo de selección (mercados donde gana el batacazo atraen volumen después). wcsmars (≥$1k, 26k mercados) no lo encontró. Control: muestra al azar de 15 mil mercados de $10–50k (`mercados/muestra_bajo_volumen.py`; 5.816 con historial). Resultado a 7 días en el control: Sí 10–20% +3,2 pts, 20–30% −0,6, 30–40% −7,7 (promedio ≈ −2 pts) → la anomalía desaparece en mercados chicos: confirma sesgo de selección por volumen final. A 30 días el Sí incluso está sobrevalorado.
 
 ## Estado
 - [x] Datos Kino + análisis
