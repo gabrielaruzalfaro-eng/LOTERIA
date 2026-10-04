@@ -10,7 +10,7 @@ import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
-GAMMA = "https://gamma-api.polymarket.com/markets?closed=true&limit=100&offset={}&volume_num_min={}&order=id&ascending=true"
+GAMMA = "https://gamma-api.polymarket.com/markets/keyset?closed=true&limit=500&volume_num_min={}"
 HIST = "https://clob.polymarket.com/prices-history?market={}&interval=max&fidelity=1440"
 DESTINO = os.path.join(os.path.dirname(__file__), "raw", "polymarket.jsonl")
 
@@ -26,12 +26,13 @@ def get(url, intentos=4):
 
 
 def mercados(vol_min):
-    offset = 0
+    cursor, revisados = None, 0
     while True:
-        pagina = get(GAMMA.format(offset, vol_min))
-        if not pagina:
+        resp = get(GAMMA.format(vol_min) + (f"&after_cursor={cursor}" if cursor else ""))
+        if not resp or not resp.get("markets"):
             return
-        for m in pagina:
+        revisados += len(resp["markets"])
+        for m in resp["markets"]:
             try:
                 outcomes, precios = json.loads(m["outcomes"]), [float(x) for x in json.loads(m["outcomePrices"])]
                 tokens = json.loads(m["clobTokenIds"])
@@ -43,9 +44,10 @@ def mercados(vol_min):
                    "inicio": m.get("startDate"), "fin": m.get("closedTime") or m.get("endDate"),
                    "opciones": outcomes, "gana": precios.index(max(precios)), "token": tokens[0],
                    "categoria": m.get("category")}
-        offset += 100
-        if offset % 5000 == 0:
-            print(f"  {offset} mercados revisados", flush=True)
+        print(f"  {revisados:,} mercados revisados", flush=True)
+        cursor = resp.get("next_cursor")
+        if not cursor:
+            return
 
 
 def con_historial(m):
