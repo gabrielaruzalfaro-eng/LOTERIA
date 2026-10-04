@@ -57,7 +57,12 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 ## Modelo IA Kino (`python3 modelo_ia_kino.py`; requiere numpy y scikit-learn)
 - Logística, gradient boosting y red neuronal; entrenamiento con 1.602 sorteos, prueba con los 687 más recientes.
 - AUC 0,502–0,507 y log-loss igual o peor que el azar (0,6859). Aciertos 7,85–7,93 vs 7,84 esperado (error estándar ≈0,05; con 3 modelos probados no es significativo). La IA no predice.
-- Próximo interés del usuario: predicción deportiva (fútbol).
+
+## Fútbol (carpeta `futbol/`)
+- Datos (no se suben a git; regenerar): `python3 futbol/descargar_futbol.py` (football-data.co.uk: 22 ligas europeas 2005–2026 + 16 ligas del resto del mundo; ojo: CHL = China, no Chile) y `python3 futbol/descargar_chile.py` (betexplorer: Chile, cuotas solo desde 2020; antes de 2020 solo partidos parciales).
+- Modelo `python3 futbol/modelo_futbol.py`: Elo + regresión logística, entrenado año a año con años previos.
+- 228.130 partidos, 203.570 evaluados fuera de muestra. Acierto: modelo 48,6% vs casas de apuestas 50,1% (log-loss 1,025 vs 1,005).
+- ROI apostando cuando el modelo ve valor: −11,7% con cuota promedio; −3,4% con la mejor cuota del mercado. Ninguna liga positiva (mejor Austria −2,5%; Chile −12%).
 
 ## Estado
 - [x] Datos Kino + análisis
