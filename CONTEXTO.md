@@ -46,6 +46,10 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Informe: https://claude.ai/code/artifact/6b0a1891-7df5-45b0-9d9c-84c0d486fc6e
 - Combinaciones entregadas: Loto 6-19-28-33-36-41. Kino: (1) 1 3 6 7 9 11 13 15 17 18 20 22 24 25; (2) 2 3 4 6 7 8 11 12 13 15 16 19 21 22; (3) 1 4 5 9 11 12 14 16 18 20 21 23 24 25; (4) 2 5 6 7 8 10 14 16 17 18 19 22 23 24.
 
+## Protocolo del sorteo Kino (texto aportado por el usuario, sin fuente verificada)
+- Hay varios sets de bolitas (A, B, C...) sellados; el notario elige uno al azar antes de cada sorteo y pesa las 25 bolitas.
+- Implicancia: un sesgo de un set se diluye al mezclar sorteos de todos los sets. Para probarlo se necesitaría saber qué set se usó en cada sorteo (actas notariales); sin ese dato no es analizable.
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)
