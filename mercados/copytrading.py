@@ -88,7 +88,7 @@ def roi_copia(compras, recargo):
         return None, len(g), None
     media = sum(g) / len(g)
     de = math.sqrt(sum((x - media) ** 2 for x in g) / (len(g) - 1))
-    return media, len(g), media / (de / math.sqrt(len(g)))
+    return media, len(g), (media / (de / math.sqrt(len(g))) if de else 0.0)
 
 
 def analizar():

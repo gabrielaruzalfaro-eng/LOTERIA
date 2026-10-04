@@ -69,6 +69,14 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Mercado + modelo con mejor cuota: ROI +1,4% (ventaja>0%), +4,8% (>5%). PERO el control sin modelo (mercado recalibrado + mejor cuota) da lo mismo o más: +1,2% / +5,2% / +8,5%. El modelo no aporta información (log-loss 1,0041 vs 1,0040 del control).
 - La "ganancia" viene de una ineficiencia conocida: recalibrar el sesgo favorito/batacazo de las casas y apostar a la cuota máxima. En la práctica las cuotas máximas suelen ser de casas que limitan o cierran cuentas ganadoras, o son cuotas desactualizadas/erróneas.
 
+## Copy trading Polymarket (`python3 mercados/copytrading.py [n]`)
+- 6.000 mercados al azar (jul-2024 a sep-2026, volumen $100k–3M, sin cripto 5 min). Formación: cerrados antes de 2026-02-01 (2.338); evaluación: después (3.662). 11.196 billeteras activas en ambos.
+- Persistencia (correlación de rangos de rentabilidad antes vs después): +0,04 → prácticamente nula.
+- Copiar cada compra con $1 (recargo 0/1/3¢): todas +0,6/−4,1/−10,4% · top 50 por ganancia +2,1/−1,6/−7,2% · top 200 +0,8/−2,7/−8,2% · top 10 por rentabilidad −29/−32/−37% · top 50 por rentabilidad −31/−33/−38%.
+- Top 10 por ganancia: −13/−15/−18%; sin su billetera más activa +12,7/+10,6/+6,6%, pero depende de 3–4 billeteras (ROI individual de −100% a +89%). Ruido, no estrategia.
+- Con muestra parcial (2.600 mercados) el top 10 daba +4,6% a +9,6%: el resultado cambia de signo con más datos → evidencia de azar.
+- Limitaciones: ≤10.500 operaciones por mercado (las más recientes), copiar al precio observado + recargo, no considera que copiar mueve el precio.
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)
