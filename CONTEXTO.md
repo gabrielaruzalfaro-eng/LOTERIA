@@ -77,6 +77,10 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - Con muestra parcial (2.600 mercados) el top 10 daba +4,6% a +9,6%: el resultado cambia de signo con más datos → evidencia de azar.
 - Limitaciones: ≤10.500 operaciones por mercado (las más recientes), copiar al precio observado + recargo, no considera que copiar mueve el precio.
 
+## Polymarket estrategias (parcial, 54 mil mercados de mayor volumen)
+- Idea 1 (No en Sí 1–10%): −2,5% (7 días), −0,7% (30 días) con 1¢. Idea 2 (reversión): −15% a −32%. Idea 3 (favorito 95–99%): −1,4% a −1,9%. Todas pierden.
+- ANOMALÍA en revisión: Sí a 10–40% sale ~5–6 pts más de lo que indica el precio ("comprar Sí" daría +20%). Crece con el volumen FINAL (+4% en $0,1–0,2M → +14% en >$10M a 7 días) → probable sesgo de selección (mercados donde gana el batacazo atraen volumen después). wcsmars (≥$1k, 26k mercados) no lo encontró. Control: muestra al azar de 15 mil mercados de $10–50k (`mercados/muestra_bajo_volumen.py`).
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)
