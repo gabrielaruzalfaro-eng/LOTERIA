@@ -35,3 +35,20 @@
 Todos los análisis honestos llegan a lo mismo que este proyecto: los modelos no le ganan al mercado; las únicas
 ventajas medibles vienen de ineficiencias de precio (cuotas lentas o desactualizadas, sesgo favorito/batacazo) y
 suelen desaparecer al incluir costos reales o límites de las casas.
+
+## Bots y copy trading (Polymarket)
+⚠ **Alerta de seguridad**: varios repos de "copy trading bot" en GitHub contenían código que roba la clave privada
+de la billetera (lee el `.env` y la envía a un servidor del atacante; caso conocido: autor "Trust412", paquete
+`excluder-mcp-package`). Muchos repos con nombres repetidos tipo "polymarket bot polymarket bot..." son spam/SEO.
+Nunca poner una clave privada con fondos en código de terceros sin auditarlo.
+
+| Repo | Qué es | Nota |
+|---|---|---|
+| [Polymarket/py-sdk](https://github.com/Polymarket/py-sdk) y clientes oficiales en [github.com/Polymarket](https://github.com/Polymarket) | SDK oficial (py-clob-client fue archivado en mayo 2026) | Base segura para cualquier bot propio |
+| [Drakkar-Software/OctoBot-prediction-market](https://github.com/Drakkar-Software/OctoBot-prediction-market) | Bot con copy trading, arbitraje y modo simulado (paper trading) | Proyecto conocido (OctoBot) |
+| [ent0n29/polybot](https://github.com/ent0n29/polybot) | Infraestructura de trading y "ingeniería inversa" de estrategias | Útil para estudiar |
+| [realfishsam/Polymarket-Copy-Trader](https://github.com/realfishsam/Polymarket-Copy-Trader) | Copia posiciones de billeteras elegidas | Auditar antes de usar |
+| dexorynlabs, CoinMLabs, Benjam1nCup, CodeX2124 (copy-trading-bot) | Bots de copy trading | Descripciones spam: tratar como sospechosos |
+
+Pregunta clave del copy trading: ¿los traders que ganaron en el pasado siguen ganando después? (persistencia de
+habilidad). Además, al copiar entras después y a peor precio que el trader original.
