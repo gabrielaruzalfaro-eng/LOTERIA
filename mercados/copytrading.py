@@ -137,6 +137,12 @@ def analizar():
     for k in (10, 50, 200):
         grupo(f"Top {k} por rentabilidad (gastaron ≥$1.000)", por_roi[:k])
     grupo("Peores 200 por ganancia en formación", por_ganancia[-200:])
+    print("\n  Detalle top 10 por ganancia (copiando con recargo 1¢):")
+    for w in por_ganancia[:10]:
+        r, n, _ = roi_copia(evalu[w], 0.01)
+        print(f"    {w[:10]}…  compras copiadas {len(evalu[w]):6,} · ROI " + (f"{r:+.1%}" if r is not None else "–"))
+    sin_mayor = [w for w in por_ganancia[:10] if w != max(por_ganancia[:10], key=lambda x: len(evalu[x]))]
+    grupo("Top 10 sin la billetera con más compras", sin_mayor)
     rng = random.Random(1)
     grupo("200 billeteras al azar", rng.sample(list(activos), min(200, len(activos))))
 
