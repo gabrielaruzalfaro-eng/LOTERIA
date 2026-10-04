@@ -16,6 +16,11 @@ Lo que sí se puede investigar con rigor:
 - Comparar modelos predictivos (ML, frecuencias, "números calientes") contra el azar mediante backtesting.
 - Valor esperado y sesgos de los jugadores (números populares → premios compartidos).
 
+## Meta del usuario
+Encontrar los números con mayor probabilidad de salir.
+Respuesta: en un sorteo justo todos los números tienen igual probabilidad. Plan: (1) probar sesgo con datos
+históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no compartir el premio.
+
 ## Estado
 - [ ] Definir alcance (¿qué juego? ¿qué entregable?)
 - [ ] Conseguir datos históricos
