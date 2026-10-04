@@ -64,6 +64,11 @@ históricos; (2) si no hay sesgo, elegir combinaciones poco populares para no co
 - 228.130 partidos, 203.570 evaluados fuera de muestra. Acierto: modelo 48,6% vs casas de apuestas 50,1% (log-loss 1,025 vs 1,005).
 - ROI apostando cuando el modelo ve valor: −11,7% con cuota promedio; −3,4% con la mejor cuota del mercado. Ninguna liga positiva (mejor Austria −2,5%; Chile −12%).
 
+## Fútbol v2 (`python3 futbol/modelo_futbol_v2.py`, ~75 s)
+- Gradient boosting con Elo, goles, tiros al arco, forma y descanso. Acierto 48,7%, log-loss 1,0231 vs casas 1,0050. Apostando solo con el modelo: ROI −10,9% (cuota promedio), −3,1% (mejor cuota).
+- Mercado + modelo con mejor cuota: ROI +1,4% (ventaja>0%), +4,8% (>5%). PERO el control sin modelo (mercado recalibrado + mejor cuota) da lo mismo o más: +1,2% / +5,2% / +8,5%. El modelo no aporta información (log-loss 1,0041 vs 1,0040 del control).
+- La "ganancia" viene de una ineficiencia conocida: recalibrar el sesgo favorito/batacazo de las casas y apostar a la cuota máxima. En la práctica las cuotas máximas suelen ser de casas que limitan o cierran cuentas ganadoras, o son cuotas desactualizadas/erróneas.
+
 ## Estado
 - [x] Datos Kino + análisis
 - [x] Base Kino consolidada (faltan 8 sorteos)

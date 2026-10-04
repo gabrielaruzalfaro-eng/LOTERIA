@@ -54,6 +54,7 @@ def cargar():
                     d, h, a, hg, ag = fecha(r["fecha"]), r["local"], r["visita"], r["gl"], r["gv"]
                     odds = [num(r["cuota_l"]), num(r["cuota_e"]), num(r["cuota_v"])]
                     mejor = None
+                    tiros = (None, None)
                     temp = r["temporada"]
                 elif "HomeTeam" in r or "Home" in r:
                     d = fecha(r.get("Date", ""))
@@ -71,6 +72,8 @@ def cargar():
                         if all(o):
                             mejor = o
                             break
+                    hst, ast = r.get("HST", ""), r.get("AST", "")
+                    tiros = (int(hst), int(ast)) if hst.strip().isdigit() and ast.strip().isdigit() else (None, None)
                     temp = base.split("_")[1] if "_" in base else (r.get("Season") or "")
                     liga = liga if "_" in base else (r.get("Country") or liga)
                 else:
@@ -81,7 +84,8 @@ def cargar():
                 anio = 2000 + int(temp[:2]) if "_" in base else int(str(temp)[:4] or d.year)
                 res = 0 if int(hg) > int(ag) else (1 if hg == ag else 2)
                 partidos.append({"liga": liga, "anio": anio, "fecha": d, "h": h, "a": a,
-                                 "gd": int(hg) - int(ag), "res": res, "odds": odds if odds and all(odds) else None,
+                                 "gd": int(hg) - int(ag), "gh": int(hg), "ga": int(ag),
+                                 "tiros": tiros, "res": res, "odds": odds if odds and all(odds) else None,
                                  "mejor": mejor})
     partidos.sort(key=lambda p: (p["fecha"], p["liga"]))
     return partidos
