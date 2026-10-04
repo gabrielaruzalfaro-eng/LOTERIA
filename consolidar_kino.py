@@ -4,6 +4,7 @@ Fuentes (data/raw y data/):
 - kinolab_historico.csv  (github.com/FernandoLizana/kino-lab): fecha + números, 1990–2024, sin n° de sorteo.
 - kino_principal.csv     (github.com/Nicovh-Analytics/analisis-loteria-chile): n° de sorteo + números, 2362–3264.
 - gaaguile_kino_history.json (vía github.com/cmiloarevalo-hash/Estadis): n° + fecha + números.
+- chileresultados_kino.csv (descargar_chileresultados.py): n° + fecha + números, recientes.
 - fernando8955_kino_polla.json (github.com/Fernando8955/kino): n° + fecha + números, sorteos recientes.
 El n° de sorteo de kino-lab se asigna alineando sus combinaciones con las de Nicovh.
 """
@@ -62,10 +63,18 @@ for s, (fecha, nums) in gaaguile.items():
     else:
         sorteos[s] = {"fecha": fecha, "nums": nums, "fuente": "gaaguile"}
 
-for s, (fecha, nums) in recientes.items():
-    if s in sorteos and sorteos[s]["nums"] != nums:
-        conflictos.append(s)
-    sorteos[s] = {"fecha": fecha, "nums": nums, "fuente": "fernando8955"}
+with open("data/raw/chileresultados_kino.csv") as f:
+    chileres = {int(r["sorteo"]): (r["fecha"], tuple(sorted(map(int, r["numeros"].split())))) for r in csv.DictReader(f)}
+
+for fuente, datos in (("fernando8955", recientes), ("chileresultados", chileres)):
+    for s, (fecha, nums) in datos.items():
+        if s in sorteos:
+            if sorteos[s]["nums"] != nums:
+                conflictos.append(s)
+            else:
+                sorteos[s]["fuente"] += "+" + fuente
+        else:
+            sorteos[s] = {"fecha": fecha, "nums": nums, "fuente": fuente}
 
 ids = sorted(sorteos)
 faltantes = sorted(set(range(ids[0], ids[-1] + 1)) - set(ids))
